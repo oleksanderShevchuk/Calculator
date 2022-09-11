@@ -20,6 +20,7 @@ namespace CalculatorInterface
         public Calculator()
         {
             InitializeComponent();
+            label2.ForeColor = System.Drawing.Color.Transparent;
         }
 
         private void ZeroBtn_Click(object sender, EventArgs e)
@@ -81,14 +82,50 @@ namespace CalculatorInterface
         {
             CalculationsBtn(sender, e, "-");
         }
-
+        private void MultiplicationBtn_Click(object sender, EventArgs e)
+        {
+            CalculationsBtn(sender, e, "*");
+        }
+        private void DivisionBtn_Click(object sender, EventArgs e)
+        {
+            CalculationsBtn(sender, e, "/");
+        }
+        private void SqrtBtn_Click(object sender, EventArgs e)
+        {
+            firstValue = Convert.ToDecimal(label1.Text);
+            label1.Text = calculations.Sqrt(firstValue).ToString();
+        }
+        private void PowerBtn_Click(object sender, EventArgs e)
+        {
+            CalculationsBtn(sender, e, "ⁿ");
+        }
+        private void FactorialBtn_Click(object sender, EventArgs e)
+        {
+            firstValue = Convert.ToDecimal(label1.Text);
+            label2.Text = firstValue + "!";
+            label1.Text = calculations.Factorial(firstValue).ToString();
+        }
+        private void PiBtn_Click(object sender, EventArgs e)
+        {
+            if (!label1.Text.Contains("𝝅"))
+            {
+                firstValue = Convert.ToDecimal(label1.Text);
+                firstValue = (firstValue * (decimal)3.14);
+                label1.Text = firstValue.ToString();
+            }
+        }
         private void CalculationsBtn(object sender, EventArgs e, string symbol)
         {
             if (label1.Text != null)
-            {   
+            {
+                //calculations.IsEvent += CalculationsIsEvent;
                 if (label2.Text == "")
                 {
-                    firstValue = Convert.ToDecimal(label1.Text);
+                    decimal.TryParse(label1.Text, out decimal result);
+                    if (result != 0)
+                    {
+                        firstValue = result;
+                    }
                     label2.Text = label1.Text + " " + symbol;
                     label1.Text = "0";
                 }
@@ -104,8 +141,12 @@ namespace CalculatorInterface
 
         private void TotalBtn_Click(object sender, EventArgs e)
         {
-            secondValue = Convert.ToDecimal(label1.Text);
-            decimal result = 0;
+            decimal.TryParse(label1.Text, out decimal result);
+            if (result != 0)
+            {
+                secondValue = result;
+                result = 0;
+            }
             if (label1.Text != null && label2.Text != null)
             {
                 switch (IsSymbol)
@@ -116,6 +157,15 @@ namespace CalculatorInterface
                     case "-":
                         result = calculations.Subtraction(firstValue, secondValue);
                         break;
+                    case "*":
+                        result = calculations.Multiplication(firstValue, secondValue);
+                        break;
+                    case "/":
+                        result = calculations.Division(firstValue, secondValue);
+                        break;
+                    case "ⁿ":
+                        result = calculations.Power(firstValue, secondValue);
+                        break;
                     default:
                         break;
                 }
@@ -123,17 +173,26 @@ namespace CalculatorInterface
                 label1.Text = result.ToString();
                 label2.Text = "";
             }
-            
         }
         private void DotBtn_Click(object sender, EventArgs e)
         {
-            label1.Text += ",";
+            if (!label1.Text.Contains(','))
+            {
+                label1.Text += ",";
+            }
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private void DeleteAllBtn_Click(object sender, EventArgs e)
         {
             label1.Text = "0";
             label2.Text = "";
         }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            label1.Text = label1.Text.Remove(label1.Text.Length - 1);
+        }
+
+        
     }
 }
