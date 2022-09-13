@@ -1,13 +1,6 @@
 ﻿using Calculator;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CalculatorInterface
@@ -127,11 +120,23 @@ namespace CalculatorInterface
         }
         private void LnBtn_Click(object sender, EventArgs e)
         {
-
+            if (!label1.Text.Contains("ln") && label1.Text != "0")
+            {
+                double inputValue;
+                double.TryParse(label1.Text, out inputValue);
+                secondValue = (decimal)Math.Log(inputValue);
+                label1.Text = secondValue.ToString();
+            }
         }
         private void LgBtn_Click(object sender, EventArgs e)
         {
-
+            if (!label1.Text.Contains("lg") && label1.Text != "0")
+            {
+                double inputValue;
+                double.TryParse(label1.Text, out inputValue);
+                secondValue = (decimal)Math.Log10(inputValue);
+                label1.Text = secondValue.ToString();
+            }
         }
         private void CalculationsBtn(object sender, EventArgs e, string symbol)
         {
@@ -210,7 +215,5 @@ namespace CalculatorInterface
         {
             label1.Text = label1.Text.Remove(label1.Text.Length - 1);
         }
-
-        
     }
 }
