@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -101,18 +102,36 @@ namespace CalculatorInterface
         }
         private void FactorialBtn_Click(object sender, EventArgs e)
         {
-            firstValue = Convert.ToDecimal(label1.Text);
-            label2.Text = firstValue + "!";
-            label1.Text = calculations.Factorial(firstValue).ToString();
+            if (!label1.Text.Contains("!") && label1.Text != "0")
+            {
+                decimal.TryParse(label1.Text, out firstValue);
+                firstValue = calculations.Factorial(firstValue);
+                label1.Text = firstValue.ToString();
+            }
         }
         private void PiBtn_Click(object sender, EventArgs e)
         {
             if (!label1.Text.Contains("𝝅"))
             {
-                firstValue = Convert.ToDecimal(label1.Text);
-                firstValue = (firstValue * (decimal)3.14);
-                label1.Text = firstValue.ToString();
+                if (label1.Text == "0")
+                {
+                    secondValue = 3.14159265359M;
+                }
+                else
+                {
+                    decimal.TryParse(label1.Text, out secondValue);
+                    secondValue = secondValue * (decimal)3.14;
+                }
+                label1.Text = secondValue.ToString();
             }
+        }
+        private void LnBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void LgBtn_Click(object sender, EventArgs e)
+        {
+
         }
         private void CalculationsBtn(object sender, EventArgs e, string symbol)
         {
@@ -145,7 +164,6 @@ namespace CalculatorInterface
             if (result != 0)
             {
                 secondValue = result;
-                result = 0;
             }
             if (label1.Text != null && label2.Text != null)
             {

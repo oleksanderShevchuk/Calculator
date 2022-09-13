@@ -53,6 +53,8 @@
             this.OneBtn = new System.Windows.Forms.Button();
             this.TwoBtn = new System.Windows.Forms.Button();
             this.ZeroBtn = new System.Windows.Forms.Button();
+            this.LnBtn = new System.Windows.Forms.Button();
+            this.LgBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +76,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.panel1.Controls.Add(this.LgBtn);
+            this.panel1.Controls.Add(this.LnBtn);
             this.panel1.Controls.Add(this.FactorialBtn);
             this.panel1.Controls.Add(this.PowerBtn);
             this.panel1.Controls.Add(this.SqrtBtn);
@@ -207,7 +211,6 @@
             this.DeleteAllBtn.Text = "C";
             this.DeleteAllBtn.UseVisualStyleBackColor = false;
             this.DeleteAllBtn.Click += new System.EventHandler(this.DeleteAllBtn_Click);
-            this.DeleteAllBtn.MouseHover += new System.EventHandler(this.DeleteAllBtn_Click);
             // 
             // label2
             // 
@@ -403,6 +406,32 @@
             this.ZeroBtn.UseVisualStyleBackColor = false;
             this.ZeroBtn.Click += new System.EventHandler(this.ZeroBtn_Click);
             // 
+            // LnBtn
+            // 
+            this.LnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LnBtn.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.LnBtn.Location = new System.Drawing.Point(89, 156);
+            this.LnBtn.Name = "LnBtn";
+            this.LnBtn.Size = new System.Drawing.Size(85, 44);
+            this.LnBtn.TabIndex = 24;
+            this.LnBtn.Text = "ln";
+            this.LnBtn.UseVisualStyleBackColor = false;
+            this.LnBtn.Click += new System.EventHandler(this.LnBtn_Click);
+            // 
+            // LgBtn
+            // 
+            this.LgBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LgBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LgBtn.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.LgBtn.Location = new System.Drawing.Point(3, 156);
+            this.LgBtn.Name = "LgBtn";
+            this.LgBtn.Size = new System.Drawing.Size(85, 44);
+            this.LgBtn.TabIndex = 25;
+            this.LgBtn.Text = "lg";
+            this.LgBtn.UseVisualStyleBackColor = false;
+            this.LgBtn.Click += new System.EventHandler(this.LgBtn_Click);
+            // 
             // Calculator
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -449,6 +478,8 @@
         private System.Windows.Forms.Button SqrtBtn;
         private System.Windows.Forms.Button PowerBtn;
         private System.Windows.Forms.Button FactorialBtn;
+        private System.Windows.Forms.Button LgBtn;
+        private System.Windows.Forms.Button LnBtn;
     }
 }
 
